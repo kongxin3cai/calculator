@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>孙千 | 清新自然的演员气质</title>
+  <meta name="description" content="孙千主题展示网站，呈现她的气质风格、代表作品与观众印象。">
+  <style>
+    :root {
+      --bg: #fff8f5;
+      --panel: rgba(255, 255, 255, 0.82);
+      --text: #2a2020;
+      --muted: #6f5f5f;
+      --accent: #d87b7b;
+      --line: rgba(83, 54, 54, 0.12);
+      --shadow: 0 22px 60px rgba(114, 76, 76, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 220, 220, 0.45), transparent 36%),
+        radial-gradient(circle at 100% 0%, rgba(255, 235, 214, 0.5), transparent 32%),
+        linear-gradient(180deg, #fffaf7 0%, #fff3ee 100%);
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 248, 245, 0.75);
+      border-bottom: 1px solid rgba(83, 54, 54, 0.08);
+    }
+
+    .nav {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .menu {
+      display: flex;
+      gap: 14px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      padding: 72px 0 30px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-text {
+      padding: 40px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(216, 123, 123, 0.2);
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.88);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-text p {
+      margin-top: 14px;
+      color: var(--muted);
+      max-width: 35rem;
+    }
+
+    .hero-side {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .portrait {
+      min-height: 360px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.88), transparent 20%),
+        radial-gradient(circle at 50% 42%, rgba(247, 211, 198, 0.96), rgba(216, 151, 147, 0.7) 42%, rgba(160, 108, 108, 0.5) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait::after {
+      content: "Sun Qian";
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      color: rgba(255, 255, 255, 0.78);
+      letter-spacing: 0.2em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .note {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    section {
+      padding: 20px 0;
+    }
+
+    .title {
+      margin-bottom: 14px;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .desc {
+      margin-bottom: 18px;
+      color: var(--muted);
+      max-width: 45rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .item {
+      padding: 22px;
+    }
+
+    .item h3 {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+    }
+
+    .item p {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .row {
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .idx {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .grid { grid-template-columns: 1fr; }
+      .hero-text { padding: 30px 22px; }
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="logo">SUN QIAN</div>
+      <nav class="menu">
+        <a href="#about">气质</a>
+        <a href="#works">作品</a>
+        <a href="#moments">时刻</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <article class="card hero-text">
+        <span class="tag">清新自然 · 灵动温暖</span>
+        <h1>孙千</h1>
+        <p>这是一个为孙千设计的单页展示网站，用轻柔色调和简洁排版，呈现她在镜头中的松弛感与真实感。</p>
+        <p>页面强调“留白感”和“故事感”，希望把她身上那种不刻意却很有辨识度的气质表达出来。</p>
+      </article>
+      <aside class="card hero-side">
+        <div class="portrait" role="img" aria-label="孙千风格化视觉插画"></div>
+        <div class="note">非官方主题页面，可直接用于静态网页展示。</div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <h2 class="title">人物气质</h2>
+      <p class="desc">孙千的表演风格常被评价为自然、干净、有生活纹理。她擅长通过细微神态和情绪递进，把角色的真实感落到观众心里。</p>
+      <div class="grid">
+        <article class="card item">
+          <h3>清透感</h3>
+          <p>镜头呈现轻盈克制，角色状态舒展，不依赖夸张手法也能被记住。</p>
+        </article>
+        <article class="card item">
+          <h3>情绪层次</h3>
+          <p>善于用细节处理情绪变化，让人物在成长过程中有真实温度。</p>
+        </article>
+        <article class="card item">
+          <h3>角色辨识度</h3>
+          <p>在青春与都市类型中都能保持个人风格，形成稳定的银幕记忆点。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="works">
+      <h2 class="title">代表作品印象</h2>
+      <p class="desc">这里采用“观众感受”视角，而不是百科罗列，让页面保持简洁和可读性。</p>
+      <div class="grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+        <article class="card item">
+          <h3>青春题材</h3>
+          <p>在青春叙事中，她能同时呈现角色的敏感、倔强和成长，具有很强代入感。</p>
+        </article>
+        <article class="card item">
+          <h3>都市题材</h3>
+          <p>在更成熟的都市表达中，她的表演更克制稳定，细节更耐看。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="moments">
+      <h2 class="title">闪光时刻</h2>
+      <div class="timeline">
+        <article class="card row">
+          <div class="idx">01</div>
+          <div>
+            <h3>出场自带记忆点</h3>
+            <p class="desc" style="margin: 4px 0 0;">角色第一印象鲜明，能够快速建立观众连接。</p>
+          </div>
+        </article>
+        <article class="card row">
+          <div class="idx">02</div>
+          <div>
+            <h3>细节支撑情绪</h3>
+            <p class="desc" style="margin: 4px 0 0;">通过眼神、停顿、语气层层推进，让情绪表达更真实。</p>
+          </div>
+        </article>
+        <article class="card row">
+          <div class="idx">03</div>
+          <div>
+            <h3>风格持续成熟</h3>
+            <p class="desc" style="margin: 4px 0 0;">在更多角色里保持稳定表达，逐渐形成清晰个人标签。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    本页为孙千主题非官方展示网站。
+  </footer>
+</body>
+</html>
