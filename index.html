@@ -21,8 +21,65 @@
       <div class="result-item" id="attention-store">Attention存储：<br>-</div>
       <div class="result-item" id="moe-compute">MoE算力：<br>-</div>
       <div class="result-item" id="moe-store">MoE存储：<br>-</div>
+      <div class="result-item" id="total-compute">总算力（Attention + MoE）：<br>-</div>
+      <div class="result-item" id="total-store">总存储（Attention + MoE）：<br>-</div>
+    </section>
+    <section class="panel gpu-panel">
+      <h2>NVIDIA GPU</h2>
+      <div class="input-row">
+        <label for="gpu-count">GPU数量</label>
+        <input id="gpu-count" type="number" min="1" step="1" value="8">
+      </div>
+      <div class="input-row">
+        <label for="single-train-time-ms">单次训练时间（ms）</label>
+        <input id="single-train-time-ms" type="number" min="1" step="1" value="100">
+      </div>
+      <div class="input-row">
+        <label for="gpu-intermediate-dtype">算力类型（同步）</label>
+        <select id="gpu-intermediate-dtype"></select>
+      </div>
+      <div class="input-row">
+        <label for="gpu-model">GPU型号</label>
+        <select id="gpu-model"></select>
+      </div>
+      <div class="gpu-specs" id="gpu-specs">
+        <div class="gpu-spec-item"><span>显存容量</span><strong id="gpu-memory">-</strong></div>
+        <div class="gpu-spec-item"><span>FP32算力</span><strong id="gpu-fp32">-</strong></div>
+        <div class="gpu-spec-item"><span>BF16算力</span><strong id="gpu-bf16">-</strong></div>
+        <div class="gpu-spec-item"><span>FP8算力</span><strong id="gpu-fp8">-</strong></div>
+        <div class="gpu-source-list" id="gpu-source-list"></div>
+        <p class="gpu-spec-note" id="gpu-spec-note">注：算力为官方公开理论峰值（TFLOPS），不同精度可能对应 Tensor Core 路径。</p>
+      </div>
+      <div class="cluster-specs" id="cluster-specs">
+        <div class="gpu-spec-item"><span>集群算力类型</span><strong id="cluster-compute-type">-</strong></div>
+        <div class="gpu-spec-item"><span>集群算力能力</span><strong id="cluster-compute-capacity">-</strong></div>
+        <div class="gpu-spec-item"><span>集群算力能力×单次训练时间</span><strong id="cluster-compute-window">-</strong></div>
+        <div class="gpu-spec-item"><span>集群总显存</span><strong id="cluster-total-memory">-</strong></div>
+      </div>
+      <button id="gpu-lora-btn" type="button">适合的LoRA微调模型</button>
+      <div class="input-row">
+        <label for="gpu-lora-model-select">满足条件的模型</label>
+        <select id="gpu-lora-model-select">
+          <option>点击按钮生成候选模型</option>
+        </select>
+      </div>
+      <p id="gpu-lora-result" class="gpu-lora-result">点击按钮生成推荐结果</p>
     </section>
   </main>
+  <section class="charts-container">
+    <div class="charts-main">
+      <div class="panel chart-panel">
+        <h3>MoE算力构成</h3>
+        <canvas id="moe-compute-chart" width="260" height="260" aria-label="MoE算力饼图"></canvas>
+        <div id="moe-compute-legend" class="chart-legend"></div>
+      </div>
+      <div class="panel chart-panel">
+        <h3>MoE显存构成</h3>
+        <canvas id="moe-store-chart" width="260" height="260" aria-label="MoE显存饼图"></canvas>
+        <div id="moe-store-legend" class="chart-legend"></div>
+      </div>
+    </div>
+  </section>
 
   <script src="./script.js"></script>
 </body>

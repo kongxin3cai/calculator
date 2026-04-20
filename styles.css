@@ -7,33 +7,49 @@ body {
   font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
   background: #f5f7fb;
   color: #1f2937;
+  min-height: 100vh;
 }
 
 .container {
-  max-width: 1080px;
-  margin: 24px auto;
+  max-width: 1440px;
+  margin: 12px auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 20px;
+  grid-template-columns: minmax(520px, 1fr) 340px 380px;
+  gap: 12px;
 }
 
 .panel {
   border-radius: 12px;
   background: #ffffff;
   box-shadow: 0 6px 18px rgba(10, 20, 40, 0.06);
-  padding: 20px;
+  padding: 14px;
 }
 
 .input-panel h1,
 .result-panel h2 {
-  margin: 4px 0 20px;
-  font-size: 28px;
+  margin: 2px 0 12px;
+  font-size: clamp(22px, 2vw, 28px);
 }
 
 .input-list {
   display: grid;
   gap: 10px;
+}
+
+.input-group {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 10px 10px 8px;
+  display: grid;
+  gap: 8px;
+  background: transparent;
+}
+
+.input-group-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
 }
 
 .input-row {
@@ -47,29 +63,32 @@ body {
   font-size: 15px;
 }
 
-.input-row input {
+.input-row input,
+.input-row select {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
+  background: #ffffff;
 }
 
-.input-row input:focus {
+.input-row input:focus,
+.input-row select:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
 #calc-btn {
-  margin-top: 20px;
+  margin-top: 12px;
   width: 100%;
   border: none;
   border-radius: 10px;
-  padding: 12px 16px;
+  padding: 10px 14px;
   background: #1d4ed8;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -92,12 +111,191 @@ body {
   color: #005fcc;
 }
 
+.gpu-panel {
+  background: #f8fafc;
+  min-width: 0;
+}
+
+.gpu-panel h2 {
+  margin: 2px 0 12px;
+  font-size: clamp(20px, 1.8vw, 26px);
+  color: #1e3a8a;
+}
+
+.gpu-panel .input-row {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.gpu-panel .input-row label {
+  font-size: 14px;
+}
+
+#gpu-lora-btn {
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: #1e40af;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#gpu-lora-btn:hover {
+  background: #1e3a8a;
+}
+
+.gpu-lora-result {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #1e293b;
+}
+
+.gpu-specs {
+  margin-top: 12px;
+  border: 1px solid #d9e2f2;
+  border-radius: 8px;
+  padding: 10px;
+  background: #ffffff;
+  display: grid;
+  gap: 8px;
+}
+
+.cluster-specs {
+  margin-top: 12px;
+  border: 1px solid #d9e2f2;
+  border-radius: 8px;
+  padding: 10px;
+  background: #ffffff;
+  display: grid;
+  gap: 8px;
+}
+
+.gpu-spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #334155;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.gpu-spec-item span,
+.gpu-spec-item strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.gpu-spec-item span {
+  flex: 0 1 45%;
+}
+
+.gpu-spec-item strong {
+  flex: 1 1 auto;
+  text-align: right;
+}
+
+.gpu-spec-note {
+  margin: 4px 0 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+.gpu-source-list {
+  margin-top: 4px;
+  display: grid;
+  gap: 4px;
+}
+
+.gpu-source-link {
+  font-size: 12px;
+  color: #1d4ed8;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.gpu-source-link:hover {
+  text-decoration: underline;
+}
+
 .result-item {
-  font-size: 28px;
+  font-size: clamp(20px, 1.8vw, 28px);
   font-weight: 700;
   color: #0078d7;
-  margin: 16px 0;
-  line-height: 1.4;
+  margin: 22px 0;
+  line-height: 1.45;
+}
+
+.charts-container {
+  max-width: 1440px;
+  margin: 0 auto 12px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: minmax(520px, 1fr) 340px 380px;
+  gap: 12px;
+}
+
+.charts-main {
+  display: contents;
+}
+
+.charts-main .chart-panel:nth-child(1) {
+  grid-column: 1;
+}
+
+.charts-main .chart-panel:nth-child(2) {
+  grid-column: 2 / 4;
+}
+
+.chart-panel h3 {
+  margin: 0 0 8px;
+  color: #1d4ed8;
+  font-size: clamp(18px, 1.6vw, 24px);
+}
+
+.chart-panel canvas {
+  display: block;
+  margin: 0 auto;
+  width: min(100%, 220px);
+  height: auto;
+}
+
+.chart-legend {
+  margin-top: 6px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #1f2937;
+  min-width: 0;
+}
+
+.legend-item span:last-child {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 940px) {
@@ -105,7 +303,125 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .charts-main .chart-panel:nth-child(1),
+  .charts-main .chart-panel:nth-child(2) {
+    grid-column: auto;
+  }
+
   .input-row {
     grid-template-columns: 1fr;
+  }
+}
+
+/* 1920x1080 fixed-fit profile: keep page fully visible without scrolling. */
+@media (min-width: 1800px) and (min-height: 1000px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .container {
+    margin: 4px auto;
+    gap: 6px;
+    grid-template-columns: minmax(500px, 1fr) 320px 350px;
+  }
+
+  .panel {
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .input-panel h1,
+  .result-panel h2 {
+    margin: 0 0 6px;
+    font-size: 18px;
+  }
+
+  .input-list {
+    gap: 4px;
+  }
+
+  .input-group {
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .input-group-title {
+    font-size: 11px;
+  }
+
+  .input-row {
+    gap: 4px;
+  }
+
+  .input-row label {
+    font-size: 12px;
+  }
+
+  .input-row input,
+  .input-row select {
+    padding: 5px 7px;
+    font-size: 11px;
+  }
+
+  #calc-btn {
+    margin-top: 6px;
+    padding: 7px 9px;
+    font-size: 13px;
+  }
+
+  .error-message {
+    min-height: 12px;
+    margin: 4px 0 0;
+    font-size: 11px;
+  }
+
+  .result-item {
+    font-size: 16px;
+    margin: 10px 0;
+    line-height: 1.25;
+  }
+
+  .charts-container {
+    margin: 0 auto 4px;
+    gap: 6px;
+    grid-template-columns: minmax(500px, 1fr) 320px 350px;
+  }
+
+  .charts-main {
+    display: contents;
+  }
+
+  .chart-panel {
+    padding-bottom: 8px;
+  }
+
+  .chart-panel h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+  }
+
+  .chart-panel canvas {
+    width: min(100%, 145px);
+  }
+
+  .chart-legend {
+    margin-top: 2px;
+    gap: 2px;
+  }
+
+  .legend-item {
+    font-size: 9px;
+    gap: 4px;
   }
 }

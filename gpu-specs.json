@@ -1,0 +1,159 @@
+{
+  "H100 SXM (80GB)": {
+    "memory": "80 GB HBM3",
+    "fp32": "67 TFLOPS",
+    "bf16": "1,979 TFLOPS (Tensor Core)",
+    "fp8": "3,958 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA H100 产品页", "url": "https://www.nvidia.com/en-us/data-center/h100/" },
+      { "label": "NVIDIA Tensor Core GPU Datasheet", "url": "https://resources.nvidia.com/en-us-tensor-core/nvidia-tensor-core-gpu-datasheet" }
+    ]
+  },
+  "H100 PCIe (80GB)": {
+    "memory": "80 GB HBM2e",
+    "fp32": "51 TFLOPS",
+    "bf16": "1,513 TFLOPS (Tensor Core)",
+    "fp8": "3,026 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA H100 产品页", "url": "https://www.nvidia.com/en-us/data-center/h100/" },
+      { "label": "NVIDIA Tensor Core GPU Datasheet", "url": "https://resources.nvidia.com/en-us-tensor-core/nvidia-tensor-core-gpu-datasheet" }
+    ]
+  },
+  "H200 SXM (141GB)": {
+    "memory": "141 GB HBM3e",
+    "fp32": "67 TFLOPS",
+    "bf16": "1,979 TFLOPS (Tensor Core)",
+    "fp8": "3,958 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA H200 产品页", "url": "https://www.nvidia.com/en-us/data-center/h200/" }
+    ]
+  },
+  "B100 SXM": {
+    "memory": "192 GB HBM3e",
+    "fp32": "80 TFLOPS",
+    "bf16": "1,800 TFLOPS (Tensor Core)",
+    "fp8": "3,600 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA Blackwell 架构", "url": "https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/" }
+    ]
+  },
+  "B200 SXM": {
+    "memory": "192 GB HBM3e",
+    "fp32": "90 TFLOPS",
+    "bf16": "2,250 TFLOPS (Tensor Core)",
+    "fp8": "4,500 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA B200 产品页", "url": "https://www.nvidia.com/en-us/data-center/b200/" }
+    ]
+  },
+  "GB200 Grace Blackwell Superchip": {
+    "memory": "384 GB HBM3e",
+    "fp32": "180 TFLOPS",
+    "bf16": "4,500 TFLOPS (Tensor Core)",
+    "fp8": "9,000 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA GB200 产品页", "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/" }
+    ]
+  },
+  "A100 SXM (80GB)": {
+    "memory": "80 GB HBM2e",
+    "fp32": "19.5 TFLOPS",
+    "bf16": "312 TFLOPS (Tensor Core)",
+    "fp8": "不支持",
+    "sources": [
+      { "label": "NVIDIA A100 产品页", "url": "https://www.nvidia.com/en-us/data-center/a100/" },
+      { "label": "NVIDIA A100 Datasheet", "url": "https://resources.nvidia.com/en-us-tensor-core/nvidia-a100-datasheet" }
+    ]
+  },
+  "A100 PCIe (80GB)": {
+    "memory": "80 GB HBM2e",
+    "fp32": "19.5 TFLOPS",
+    "bf16": "312 TFLOPS (Tensor Core)",
+    "fp8": "不支持",
+    "sources": [
+      { "label": "NVIDIA A100 产品页", "url": "https://www.nvidia.com/en-us/data-center/a100/" },
+      { "label": "NVIDIA A100 Datasheet", "url": "https://resources.nvidia.com/en-us-tensor-core/nvidia-a100-datasheet" }
+    ]
+  },
+  "A800 (80GB)": {
+    "memory": "80 GB HBM2e",
+    "fp32": "19.5 TFLOPS",
+    "bf16": "312 TFLOPS (Tensor Core)",
+    "fp8": "不支持",
+    "sources": [
+      { "label": "NVIDIA A800 产品页（区域）", "url": "https://www.nvidia.cn/data-center/a800/" }
+    ]
+  },
+  "A30 (24GB)": {
+    "memory": "24 GB HBM2",
+    "fp32": "10.3 TFLOPS",
+    "bf16": "165 TFLOPS (Tensor Core)",
+    "fp8": "不支持",
+    "sources": [
+      { "label": "NVIDIA A30 产品页", "url": "https://www.nvidia.com/en-us/data-center/products/a30-gpu/" }
+    ]
+  },
+  "L40S (48GB)": {
+    "memory": "48 GB GDDR6",
+    "fp32": "91.6 TFLOPS",
+    "bf16": "733 TFLOPS (Tensor Core)",
+    "fp8": "1,466 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA L40S 产品页", "url": "https://www.nvidia.com/en-us/data-center/l40s/" }
+    ]
+  },
+  "L40 (48GB)": {
+    "memory": "48 GB GDDR6",
+    "fp32": "90.5 TFLOPS",
+    "bf16": "362 TFLOPS (Tensor Core)",
+    "fp8": "不支持",
+    "sources": [
+      { "label": "NVIDIA L40 产品页", "url": "https://www.nvidia.com/en-us/data-center/l40/" }
+    ]
+  },
+  "L20 (48GB)": {
+    "memory": "48 GB GDDR6",
+    "fp32": "60 TFLOPS",
+    "bf16": "119 TFLOPS (Tensor Core)",
+    "fp8": "239 TFLOPS (Tensor Core)",
+    "sources": [
+      { "label": "NVIDIA L20 产品页", "url": "https://www.nvidia.com/en-us/data-center/l20/" }
+    ]
+  },
+  "RTX 6000 Ada (48GB)": {
+    "memory": "48 GB GDDR6",
+    "fp32": "91.1 TFLOPS",
+    "bf16": "1,457 TFLOPS (Tensor Core)",
+    "fp8": "0 TFLOPS",
+    "sources": [
+      { "label": "NVIDIA RTX 6000 Ada 产品页", "url": "https://www.nvidia.com/en-us/design-visualization/rtx-6000/" }
+    ]
+  },
+  "RTX 4090 (24GB)": {
+    "memory": "24 GB GDDR6X",
+    "fp32": "82.6 TFLOPS",
+    "bf16": "660.6 TFLOPS (Tensor Core)",
+    "fp8": "0 TFLOPS",
+    "sources": [
+      { "label": "NVIDIA RTX 4090 产品页", "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/" }
+    ]
+  },
+  "V100 SXM (32GB)": {
+    "memory": "32 GB HBM2",
+    "fp32": "15.7 TFLOPS",
+    "bf16": "0 TFLOPS",
+    "fp8": "0 TFLOPS",
+    "sources": [
+      { "label": "NVIDIA V100 产品页", "url": "https://www.nvidia.com/en-us/data-center/tesla-v100/" }
+    ]
+  },
+  "V100 PCIe (32GB)": {
+    "memory": "32 GB HBM2",
+    "fp32": "14 TFLOPS",
+    "bf16": "0 TFLOPS",
+    "fp8": "0 TFLOPS",
+    "sources": [
+      { "label": "NVIDIA V100 产品页", "url": "https://www.nvidia.com/en-us/data-center/tesla-v100/" }
+    ]
+  }
+}
