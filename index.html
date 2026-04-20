@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoRA微调计算器（网页版）</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="panel input-panel">
+      <h1>LoRA 微调计算</h1>
+      <div id="input-list" class="input-list"></div>
+      <button id="calc-btn" type="button">计算总和</button>
+      <p id="error-message" class="error-message" aria-live="polite"></p>
+    </section>
+
+    <section class="panel result-panel">
+      <h2>算力/存储</h2>
+      <div class="result-item" id="attention-compute">Attention算力：<br>-</div>
+      <div class="result-item" id="attention-store">Attention存储：<br>-</div>
+      <div class="result-item" id="moe-compute">MoE算力：<br>-</div>
+      <div class="result-item" id="moe-store">MoE存储：<br>-</div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
