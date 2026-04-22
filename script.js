@@ -47,6 +47,7 @@ const resultAttentionCompute = document.getElementById("attention-compute");
 const resultAttentionStore = document.getElementById("attention-store");
 const resultMoeCompute = document.getElementById("moe-compute");
 const resultMoeStore = document.getElementById("moe-store");
+const resultBaseWeightStore = document.getElementById("base-weight-store");
 const resultTotalCompute = document.getElementById("total-compute");
 const resultTotalStore = document.getElementById("total-store");
 const moeComputeChart = document.getElementById("moe-compute-chart");
@@ -259,24 +260,43 @@ function moeComputation(
 
 function moeStore(
   B, T, L, MoELatentDim, Experts, ActiveExperts, MoELayers,
-  baseBytes, loraBytes, intermediateBytes, loraRank
+  baseBytes, loraBytes, intermediateBytes, loraRank, refreshFromPage = false
 ) {
+  if (refreshFromPage) {
+    const numbers = parseInputs();
+    const dtypes = parseDtypes();
+    const latestLoraRank = parseLoraRank();
+    const sharedExperts = numbers[8];
+    const routedExperts = numbers[9];
+    const activeRoutedExperts = numbers[10];
+    B = numbers[0];
+    T = numbers[1];
+    L = numbers[2];
+    MoELatentDim = numbers[7];
+    Experts = sharedExperts + routedExperts;
+    ActiveExperts = sharedExperts + activeRoutedExperts;
+    MoELayers = numbers[11];
+    baseBytes = dtypes.baseBytes;
+    loraBytes = dtypes.loraBytes;
+    intermediateBytes = dtypes.intermediateBytes;
+    loraRank = latestLoraRank;
+  }
+
   if ([baseBytes, loraBytes, intermediateBytes].some((v) => !Number.isFinite(v) || v <= 0)) {
     throw new Error("请选择有效的数据类型！");
   }
   if (!loraRankOptions.includes(loraRank)) {
     throw new Error("请选择有效的 LoRA 秩！");
   }
-  const baseWeights = 3 * L * MoELatentDim * Experts * MoELayers*baseBytes;
+  //const baseWeights = 3 * L * MoELatentDim * Experts * MoELayers*baseBytes;
   const loraWeights = 3 * loraRank * (L + MoELatentDim) * Experts * MoELayers*loraBytes;
   const backwardVram = (MoELatentDim * (3 + 4 * intermediateBytes) + 2 * L * intermediateBytes) * B * T * ActiveExperts * MoELayers;
   const adamVram = 3 * loraRank * (L + MoELatentDim) * (loraBytes+ 2*4) * Experts * MoELayers;
   return {
-    baseWeights,
     loraWeights,
     backwardVram,
     adamVram,
-    totalStore: baseWeights + loraWeights + backwardVram + adamVram
+    totalStore: loraWeights + backwardVram + adamVram
   };
 }
 
@@ -742,10 +762,11 @@ function recommendLoraFineTuneModels() {
 
         const moeComputeTflops = computeData.totalComputation / (1024 ** 4);
         const moeStoreGb = storeData.totalStore / (1024 ** 3);
+        const baseWeightsGb = Number.isFinite(preset.baseWeightsGb) ? preset.baseWeightsGb : 0;
         // Model requirement uses the same "算力/存储" formula basis as panel totals,
         // with current batch/seq and candidate model-specific parameters.
         const totalComputeTflops = attentionCompute + moeComputeTflops;
-        const totalStoreGb = attentionStore + moeStoreGb;
+        const totalStoreGb = attentionStore + moeStoreGb + baseWeightsGb;
         const computeFit = totalComputeTflops <= clusterComputeWindowTflop;
         const memoryFit = totalStoreGb <= gpuMemoryGb;
 
@@ -885,16 +906,27 @@ function calculate() {
 
     const moeStoreData = moeStore(
       B, T, L, MoELatentDim, Experts, ActiveExperts, MoELayers,
-      dtypes.baseBytes, dtypes.loraBytes, dtypes.intermediateBytes, loraRank
+      dtypes.baseBytes, dtypes.loraBytes, dtypes.intermediateBytes, loraRank, true
     );
     const moeTemp = moeStoreData.totalStore;
     const moeStoreGB = moeTemp / (1024 ** 3);
     resultMoeStore.innerHTML = `MoE存储：<br>${formatAsGB(moeTemp)}`;
+    const selectedModelName = llmSizeSelect.value;
+    const selectedPreset = modelPresets[selectedModelName];
+    if (selectedPreset && Number.isFinite(selectedPreset.baseWeightsGb)) {
+      resultBaseWeightStore.innerHTML = `原始权重存储：<br>${formatGBValue(selectedPreset.baseWeightsGb)}`;
+    } else {
+      resultBaseWeightStore.innerHTML = "原始权重存储：<br>-";
+    }
+    const baseWeightStoreGB = selectedPreset && Number.isFinite(selectedPreset.baseWeightsGb)
+      ? selectedPreset.baseWeightsGb
+      : 0;
+    const baseWeightsBytes = baseWeightStoreGB * (1024 ** 3);
 
     const totalComputeTFLOPS = attentionComputeTFLOPS + moeComputeTFLOPS;
-    const totalStoreGB = attentionStoreGB + moeStoreGB;
+    const totalStoreGB = attentionStoreGB + moeStoreGB + baseWeightStoreGB;
     resultTotalCompute.innerHTML = `总算力（Attention + MoE）：<br>${formatTFLOPSValue(totalComputeTFLOPS)}`;
-    resultTotalStore.innerHTML = `总存储（Attention + MoE）：<br>${formatGBValue(totalStoreGB)}`;
+    resultTotalStore.innerHTML = `总存储（Attention + MoE + 原始权重）：<br>${formatGBValue(totalStoreGB)}`;
 
     renderPieChart(moeComputeChart, moeComputeLegend, [
       { label: "正向计算", value: moeComputationData.forwardComputation, color: "#2563eb" },
@@ -902,7 +934,7 @@ function calculate() {
     ], formatAsTFLOPS);
 
     renderPieChart(moeStoreChart, moeStoreLegend, [
-      { label: "原始权重", value: moeStoreData.baseWeights, color: "#1d4ed8" },
+      { label: "原始权重", value: baseWeightsBytes, color: "#1d4ed8" },
       { label: "LoRA权重", value: moeStoreData.loraWeights, color: "#0ea5e9" },
       { label: "反向传播显存", value: moeStoreData.backwardVram, color: "#14b8a6" },
       { label: "adam优化器显存", value: moeStoreData.adamVram, color: "#22c55e" }
