@@ -38,5 +38,21 @@
   "DeepSeek-V3 (671B MoE)": {
     "inputs": [7168, 1536, 512, 128, 128, 2048, 1, 256, 8, 58],
     "baseWeightsGb": 688.57
+  },
+  "DeepSeek-V4-Flash-Base (292B MoE)": {
+    "inputs": [4096, 1024, 1024, 64, 128, 2048, 1, 256, 6, 40],
+    "baseWeightsGb": 292.02
+  },
+  "DeepSeek-V4-Flash (158B MoE)": {
+    "inputs": [4096, 1024, 1024, 64, 128, 2048, 1, 256, 6, 40],
+    "baseWeightsGb": 158.07
+  },
+  "DeepSeek-V4-Pro-Base (1.6T MoE)": {
+    "inputs": [7168, 1536, 1024, 128, 128, 3072, 1, 384, 6, 58],
+    "baseWeightsGb": 1600.79
+  },
+  "DeepSeek-V4-Pro (862B MoE)": {
+    "inputs": [7168, 1536, 1024, 128, 128, 3072, 1, 384, 6, 58],
+    "baseWeightsGb": 861.61
   }
 }
